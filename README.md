@@ -1,4 +1,7 @@
-# job-application-skills
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/lw01-dark.png">
+  <img alt="LW-01 Job Application Skills" src=".github/assets/lw01-light.png">
+</picture>
 
 Five Claude Code skills that help you apply for jobs **without lying**.
 
@@ -20,6 +23,16 @@ An agent that writes resumes will happily invent a metric, round 6 years up to "
 - **Standing answers are dated.** Sponsorship, notice period, demographics and salary come only from `career/application-answers.md`, with the date you said it. Unknown means ask.
 - **A human gate on anything outward.** The agent fills the form and screenshots it. You say "submit."
 
+## Example: what remove-ai-tells changed on my own resume
+These are real bullets from my resume, before and after. The facts didn't move.
+
+| Before | After |
+|---|---|
+| **Shopping list:** relaunched the list with coupons, rewards and deals built in: $10.4M in incremental annual revenue and +42% add-to-cart among 1.1M weekly active users. | Relaunched the shopping list with coupons and rewards built in. It added $10.4M in annual revenue and lifted add-to-cart 42% among 1.1M weekly active users. |
+| **Rewards:** raised reward redemption 60% with targeted notifications, cutting churn 18% and lifting average basket $3.40. | Targeted notifications raised reward redemption 60%, cut churn 18% and lifted average basket $3.40. |
+
+The giveaway wasn't any single word. It was that every bullet had the same shape: a bold label, a colon, then a metric. The checker flags that pattern; a person decides what to do about it.
+
 ## Setup
 1. Copy `skills/*` into your project's `.claude/skills/` (or `~/.claude/skills/`).
 2. Create a `career/` folder from `templates/`:
@@ -35,6 +48,15 @@ Then send Claude a job link: "tailor my resume for this", or "apply for this."
 - Enter government ID numbers or bank details.
 - Submit without your explicit "submit" for that specific job.
 - Volunteer a salary number you haven't set.
+
+## What broke while I built this
+- **Bullets rendered as paragraphs.** Markdown lists need a blank line above them. My first PDFs collapsed every bullet into one run-on block, and I didn't notice until I looked at the page.
+- **Dropdowns ignored the agent.** Greenhouse uses custom select menus that don't respond to scripted clicks. Typing into the field and pressing Enter works.
+- **"How did you hear about us?" allows one answer.** I gave two true answers, so the skill now picks one and tells me which.
+- **My own resume failed my own checker.** About 15 flags on the version I'd already sent out. Nothing false in it, just a lot of template rhythm.
+
+## Built with Claude, and how
+Claude Code wrote most of the text and scripts here. I set the rules (no lying, a human submit gate, a dated answers bank), decided what the agent may never do, and I use these for my own applications. That split, where I'm the editor and the rule-maker and the agent does the drafting, is the point.
 
 ## License
 MIT
